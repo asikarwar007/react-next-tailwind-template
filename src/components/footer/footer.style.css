@@ -1,0 +1,46 @@
+
+/*** Footer Area ***/
+
+.footer-logo {
+    margin-bottom: 1.5rem;
+}
+
+
+
+.footer-widget ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.footer-widget ul li {
+    position: relative;
+    display: block;
+}
+
+.footer-widget ul li a {
+    display: block;
+    line-height: 1.2;
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 12px;
+    /* color: #828282; */
+}
+
+.widget-title {
+    @apply text-2xl mb-3;
+}
+
+.footer-bottom {
+    position: relative;
+}
+
+ul.footer-nav li {
+    position: relative;
+    display: inline-block;
+}
+
+ul.footer-nav li:first-child:before {
+    display: none;
+}
+
