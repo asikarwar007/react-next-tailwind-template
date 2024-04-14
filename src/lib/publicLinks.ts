@@ -7,67 +7,21 @@ export type Item = {
 
 export const publicLinks: { name: string; href: string;disabled: boolean; items: Item[] }[] = [
   {
-    name: 'Voter Search',
-    href: '/voter-search',
+    name: 'Search by EPIC',
+    href: '/voter-search-epic',
     disabled: false,
-    items: [
-      {
-        name: 'All Accessibility Features',
-        slug: 'pals',
-        description: 'Create UI that is shared across routes',
-      },
-      {
-        name: 'All Keybinds',
-        slug: 'items',
-        description: 'Organize routes without affecting URL paths',
-      },
-      {
-        name: 'Co-op & Joining Friends',
-        slug: 'breeding',
-        description: 'Render multiple pages in the same layout',
-      },
-      {
-        name: ' Essence Traders Locations ',
-        slug: 'calculate-iv',
-        description: 'Render multiple pages in the same layout',
-      },
-      {
-        name: ' Move, Copy, Delete Structures ',
-        slug: 'calculate-iv',
-        description: 'Render multiple pages in the same layout',
-      },
-      {
-        name: ' Tips & Tricks ',
-        slug: 'calculate-iv',
-        description: 'Render multiple pages in the same layout',
-      },
-    ],
+    items: [],
   },
   {
-    name: 'Database',
-    href: '/wiki',
+    name: 'Search by Mobile',
+    href: '/voter-search-mobile',
     disabled: false,
-    items: [
-      {
-        name: 'Pals',
-        slug: 'pals',
-        description: 'Create UI that is shared across routes',
-      },
-      {
-        name: 'Items',
-        slug: 'items',
-        description: 'Organize routes without affecting URL paths',
-      },
-      {
-        name: 'Breeding Calculator',
-        slug: 'breeding',
-        description: 'Render multiple pages in the same layout',
-      },
-      {
-        name: 'Calculator IV',
-        slug: 'calculate-iv',
-        description: 'Render multiple pages in the same layout',
-      },
-    ],
-  }
+    items: [],
+  },
+  {
+    name: 'Search by Details',
+    href: '/voter-search-details',
+    disabled: false,
+    items: [],
+  },
 ];

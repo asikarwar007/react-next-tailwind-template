@@ -12,7 +12,7 @@ export default function MainNav() {
   return (
     <div className={cn("flex gap-6 md:gap-10")}>
       <PageLogo />
-      {/* {publicLinks?.length && (
+      {publicLinks?.length && (
         <nav className={cn("flex gap-6")}>
           {publicLinks?.map((item, index) =>
             item.href && (
@@ -30,7 +30,7 @@ export default function MainNav() {
             )
           )}
         </nav>
-      )} */}
+      )}
     </div>
   )
 }

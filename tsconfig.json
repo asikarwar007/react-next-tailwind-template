@@ -23,6 +23,7 @@
       "@/setting/*": ["./src/setting/*"],           
       "@/types/*": ["./src/types/*"],           
       "@/util/*": ["./src/util/*"],           
+      "@/framework/*": ["./src/framework/*"],           
       "@/components/*": ["./src/components/*"],           
       "@/*": ["./src/*"],           
     }
