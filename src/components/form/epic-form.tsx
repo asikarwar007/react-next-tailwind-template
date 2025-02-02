@@ -13,10 +13,11 @@ import { StateCodeSelect } from "./molecules/state-code.select"
 import { InputFormCommon } from "./molecules/input-from"
 import { Boundary } from "../ui/boundary"
 import { useGetCaptchaQuery } from "@/framework/getCaptcha"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { mutater } from "@/util/mutater"
 import { mutate } from "swr"
 import { API_ENDPOINTS } from "@/framework/utils/api-endpoints"
+import { EpicResult } from "../epic-results/epic-result"
 
 const formSchema = z.object({
   stateCd: z.string({
@@ -29,8 +30,12 @@ const formSchema = z.object({
   securityKey: z.string().describe('Language is to display'),
 })
 
-export const EpicForm: React.FC = () => {
-
+export const EpicForm = () => {
+  const [formData, setFormData] = useState({
+    data: null,
+    isLoading: false,
+    isError: false,
+  });
 
   const { data: captchaDetails, error, isLoading } = useGetCaptchaQuery()
 
@@ -53,17 +58,38 @@ export const EpicForm: React.FC = () => {
     // ✅ This will be type-safe and validated.
     // const { data: captchaDetails, error, isLoading } = useGetCaptchaQuery()
     try {
+      setFormData({
+        data: null,
+        isLoading: true,
+        isError: false,
+      })
       let userDetails = await fetch(API_ENDPOINTS.EPIC_SEARCH, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(values)
       });
-      console.log(userDetails)
-
+      // console.log(userDetails.body, userDetails.json())
+      const userJson = await  userDetails.json();
+      console.log(userJson,(!userJson.error && userJson.id),"see")
+      if(!userJson.error && userJson.id)
+      setFormData({
+        data: userJson,
+        isLoading: false,
+        isError: false,
+      })
+      else setFormData({
+        data: null,
+        isLoading: false,
+        isError: true,
+      })
       // Revalidate the data after successful submission
       // mutate('/api/data');
     } catch (error) {
-      console.error('Failed to submit form', error);
+      setFormData({
+        data: null,
+        isLoading: true,
+        isError: error,
+      })
     }
 
     // trigger(values)
@@ -74,7 +100,7 @@ export const EpicForm: React.FC = () => {
       form.setValue('captchaId', captchaDetails?.id)
     }
   }, [captchaDetails])
-  return (
+  return (<>
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         <Boundary labels={['EPIC DETAIL']}>
@@ -99,9 +125,10 @@ export const EpicForm: React.FC = () => {
             }
           </div>
         </Boundary>
-
         <Button type="submit">Submit</Button>
       </form>
     </Form>
+    <EpicResult formResult={formData} />
+    </>
   )
 }
